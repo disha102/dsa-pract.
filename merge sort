@@ -1,0 +1,51 @@
+# Merge Sort in Python
+# DSA Program for Engineering Students
+
+def mergeSort(arr):
+    if len(arr) > 1:
+        # Find the middle point
+        mid = len(arr) // 2
+
+        # Divide the array into two halves
+        left_half = arr[:mid]
+        right_half = arr[mid:]
+
+        # Recursively sort both halves
+        mergeSort(left_half)
+        mergeSort(right_half)
+
+        # Merge the sorted halves
+        i = j = k = 0
+
+        # Compare and copy elements to the main array
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                arr[k] = left_half[i]
+                i += 1
+            else:
+                arr[k] = right_half[j]
+                j += 1
+            k += 1
+
+        # Copy remaining elements of left_half (if any)
+        while i < len(left_half):
+            arr[k] = left_half[i]
+            i += 1
+            k += 1
+
+        # Copy remaining elements of right_half (if any)
+        while j < len(right_half):
+            arr[k] = right_half[j]
+            j += 1
+            k += 1
+
+
+# --- Main Code ---
+# Example array
+arr = [38, 27, 43, 3, 9, 82, 10]
+print("Original array:", arr)
+
+# Function call
+mergeSort(arr)
+
+print("Sorted array:", arr)
